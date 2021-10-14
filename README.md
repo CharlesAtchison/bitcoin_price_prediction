@@ -20,7 +20,7 @@
     2. [Pairplot](#pairplot)
     3. [Explore Takeaways](#explore_takeaways)
 6. [Hypothesis](#hypothesis)
-    2. [Conclusion](#hyp_conclusion)
+    1. [Conclusion](#hyp_conclusion)
 7. [Modeling & Evaluation](#modeling)
     7. [Conclusions & Next Steps](#conclusions)
 
@@ -34,14 +34,12 @@
 ### Project Objectives 
 > - For this project we will be working with historical price and volume data from Bitcoin between 01-01-2012 & 03-31-2021, these are Bitstamp prices and all are annotated in USD.
 > - The primary focus is to see if Bitcoin price can be predicted with any reliability or if there is any cyclical observations within Bitcoin pricing or volume.
-> - The csv data can be downloaded from Kaggle <a href='https://www.kaggle.com/mczielinski/bitcoin-historical-data' title='Bitstamp USD csv file download'>here</a>).
-> - The presentation will consist of a notebook demo of the discoveries you made and work you have done related to uncovering what the drivers of the error in the zestimate is.
+> - The csv data can be downloaded from Kaggle <a href='https://www.kaggle.com/mczielinski/bitcoin-historical-data' title='Bitstamp USD csv file download'>here</a>.
 
 <a name='business_goals'></a>
 ### Business Goals 
-> - Create models that are better at predicting property values than the baseline.
-> - Demonstrate model effeciency utilizing hyperparameters and different algorithms to estimate price.
-> - Document your process well enough to be presented or read like a report.
+> - Create models that are better at predicting Bitcoin price than the baseline.
+> - Put these models into a Juypter notebook and make the project recreatable.
 
 <a name='audience'></a>
 ### Audience 
@@ -74,80 +72,38 @@
 
 <a name='acquire'></a>
 ## Acquire Data
-✓ _Plan_ ➜ 🟢 **Acquire** ➜ ☐ _Prepare_ ➜ ☐ _Explore_ ➜ ☐ _Model_ ➜ ☐ _Deliver_
+✓ _Plan_ ➜ 🟢 **Acquire** ➜ ☐ _Prepare_ ➜ ☐ _Explore_ ➜ ☐ _Model_ ➜ ☐ _Deliver_ 
 
-### Total Missing Values
-> - There are 7016 missing values.
+### Data Head
 
-### DataFrame Head
-|    |   id |   bathroomcnt |   bedroomcnt |   calculatedfinishedsquarefeet |   fips |    latitude |    longitude |   lotsizesquarefeet |   propertylandusetypeid |   rawcensustractandblock |   regionidcity |   regionidcounty |   regionidzip |   roomcnt |   yearbuilt |   structuretaxvaluedollarcnt |   taxvaluedollarcnt |   assessmentyear |   landtaxvaluedollarcnt |   taxamount |    logerror | transactiondate   | last_trans_date   |
-|---:|-----:|--------------:|-------------:|-------------------------------:|-------:|------------:|-------------:|--------------------:|------------------------:|-------------------------:|---------------:|-----------------:|--------------:|----------:|------------:|-----------------------------:|--------------------:|-----------------:|------------------------:|------------:|------------:|:------------------|:------------------|
-|  0 |   10 |             4 |            4 |                           3095 |   6037 | 3.42912e+07 | -1.18578e+08 |                 nan |                     269 |              6.03711e+07 |          12447 |             3101 |         96356 |         0 |        2016 |                       138760 |              192544 |             2016 |                   53784 |     2460.72 |  0.00596317 | 2017-01-02        | 2017-01-02        |
-|  1 |   20 |             2 |            4 |                           3633 |   6037 | 3.456e+07   | -1.1817e+08  |                9826 |                     261 |              6.03791e+07 |          40227 |             3101 |         97329 |         0 |        2005 |                       222321 |              296425 |             2016 |                   74104 |     6941.39 |  0.0424629  | 2017-01-02        | 2017-01-02        |
-|  2 |   28 |             4 |            5 |                           2865 |   6037 | 3.38792e+07 | -1.18361e+08 |                4990 |                     246 |              6.03762e+07 |          33612 |             3101 |         96124 |         0 |        1972 |                       271704 |              831224 |             2016 |                  559520 |    10455.4  |  0.20647    | 2017-01-02        | 2017-01-02        |
-|  3 |   30 |             2 |            2 |                           1090 |   6037 | 3.39741e+07 | -1.18423e+08 |               40247 |                     266 |              6.03728e+07 |          12447 |             3101 |         96072 |         0 |        2004 |                       232897 |              357568 |             2016 |                  124671 |     6165.36 |  0.0218525  | 2017-01-02        | 2017-01-02        |
-|  4 |   31 |             4 |            3 |                           1620 |   6037 | 3.39962e+07 | -1.18438e+08 |                 nan |                     261 |              6.03727e+07 |          12447 |             3101 |         96047 |         0 |        2011 |                       339532 |              847770 |             2016 |                  508238 |    10244.9  | -0.0195456  | 2017-01-02        | 2017-01-02        |
-<a name='data_dict'></a>
-### DataFrame Info
-|    | column_name                  |   nulls | dtypes   |
-|---:|:-----------------------------|--------:|:---------|
-|  0 | id                           |       0 | int64    |
-|  1 | bathroomcnt                  |       0 | float64  |
-|  2 | bedroomcnt                   |       0 | float64  |
-|  3 | calculatedfinishedsquarefeet |       0 | float64  |
-|  4 | fips                         |       0 | float64  |
-|  5 | latitude                     |       0 | float64  |
-|  6 | longitude                    |       0 | float64  |
-|  7 | lotsizesquarefeet            |    5242 | float64  |
-|  8 | propertylandusetypeid        |       0 | float64  |
-|  9 | rawcensustractandblock       |       0 | float64  |
-| 10 | regionidcity                 |    1331 | float64  |
-| 11 | regionidcounty               |       0 | float64  |
-| 12 | regionidzip                  |     159 | float64  |
-| 13 | roomcnt                      |       0 | float64  |
-| 14 | yearbuilt                    |      71 | float64  |
-| 15 | structuretaxvaluedollarcnt   |      99 | float64  |
-| 16 | taxvaluedollarcnt            |       6 | float64  |
-| 17 | assessmentyear               |       0 | float64  |
-| 18 | landtaxvaluedollarcnt        |       6 | float64  |
-| 19 | taxamount                    |     102 | float64  |
-| 20 | logerror                     |       0 | float64  |
-| 21 | transactiondate              |       0 | object   |
-| 22 | last_trans_date              |       0 | object   |
+| Timestamp           |   Open |   High |    Low |   Close |   Volume_(BTC) |   Volume_(Currency) |   Weighted_Price |
+|:--------------------|-------:|-------:|-------:|--------:|---------------:|--------------------:|-----------------:|
+| 2011-12-31 07:52:00 |   4.39 |   4.39 |   4.39 |    4.39 |       0.455581 |                   2 |             4.39 |
+| 2011-12-31 07:53:00 | nan    | nan    | nan    |  nan    |     nan        |                 nan |           nan    |
+| 2011-12-31 07:54:00 | nan    | nan    | nan    |  nan    |     nan        |                 nan |           nan    |
+| 2011-12-31 07:55:00 | nan    | nan    | nan    |  nan    |     nan        |                 nan |           nan    |
+| 2011-12-31 07:56:00 | nan    | nan    | nan    |  nan    |     nan        |                 nan |           nan    |
 
-<a name='data_desc'></a>
-### DataFrame Description
-|                              |   count |             mean |            std |             min |              25% |              50% |              75% |              max |
-|:-----------------------------|--------:|-----------------:|---------------:|----------------:|-----------------:|-----------------:|-----------------:|-----------------:|
-| id                           |   74244 |  38818.9         |  22348.2       |    10           |  19509.8         |  38762.5         |  58051.2         |  77613           |
-| bathroomcnt                  |   74244 |      2.31222     |      1.00148   |     1           |      2           |      2           |      3           |     20           |
-| bedroomcnt                   |   74244 |      3.22232     |      1.11993   |     1           |      3           |      3           |      4           |     25           |
-| calculatedfinishedsquarefeet |   74244 |   1808.71        |    932.876     |   352           |   1221           |   1581           |   2141           |  26345           |
-| fips                         |   74244 |   6048.26        |     20.7975    |  6037           |   6037           |   6037           |   6059           |   6111           |
-| latitude                     |   74244 |      3.401e+07   | 243665         |     3.33394e+07 |      3.38344e+07 |      3.40202e+07 |      3.4173e+07  |      3.48069e+07 |
-| longitude                    |   74244 |     -1.18215e+08 | 350619         |    -1.19448e+08 |     -1.18411e+08 |     -1.18186e+08 |     -1.17956e+08 |     -1.17556e+08 |
-| lotsizesquarefeet            |   69002 |  23335.3         | 118135         |   343           |   5725           |   7013           |   9929.75        |      6.97101e+06 |
-| propertylandusetypeid        |   74244 |    261.186       |      4.20089   |   246           |    261           |    261           |    261           |    275           |
-| rawcensustractandblock       |   74244 |      6.04857e+07 | 206474         |     6.0371e+07  |      6.0373e+07  |      6.03757e+07 |      6.05904e+07 |      6.11101e+07 |
-| regionidcity                 |   72913 |  35415.8         |  52702.3       |  3491           |  12447           |  25218           |  45457           | 396556           |
-| regionidcounty               |   74244 |   2582.35        |    779.163     |  1286           |   2061           |   3101           |   3101           |   3101           |
-| regionidzip                  |   74085 |  96558.9         |   3878.66      | 95982           |  96186           |  96378           |  96974           | 399675           |
-| roomcnt                      |   74244 |      1.55885     |      2.91192   |     0           |      0           |      0           |      0           |     86           |
-| yearbuilt                    |   74173 |   1964.63        |     23.3592    |  1808           |   1950           |   1963           |   1982           |   2016           |
-| structuretaxvaluedollarcnt   |   74145 | 176088           | 208736         |    10           |  79918           | 129628           | 206239           |      1.04024e+07 |
-| taxvaluedollarcnt            |   74238 | 437283           | 540462         |     9           | 192496           | 324583           | 515000           |      3.01668e+07 |
-| assessmentyear               |   74244 |   2016           |      0.0416688 |  2014           |   2016           |   2016           |   2016           |   2016           |
-| landtaxvaluedollarcnt        |   74238 | 261416           | 381454         |     9           |  79264           | 175816           | 324549           |      1.97645e+07 |
-| taxamount                    |   74142 |   5358.7         |   6232.73      |    20.24        |   2542.71        |   4064.68        |   6239.65        | 342940           |
-| logerror                     |   74244 |      0.0168669   |      0.171047  |    -4.65542     |     -0.0242413   |      0.00674558  |      0.0394171   |      5.263       |
+### Data Dictonary 
+
+| Feature           | Datatype                         | Definition                                                 |
+|:------------------|:---------------------------------|:-----------------------------------------------------------|
+| Timestamp         | 4857377 non-null: datetime64[ns] | start tiem of time window (60s window), in Unix Time       |
+| Open              | 3613769 non-null: float64        | Open price at start time window                            |
+| High              | 3613769 non-null: float64        | High price within the time window                          |
+| Low               | 3613769 non-null: float64        | Low price within the time window                           |
+| Close             | 3613769 non-null: float64        | Close price at the end of the time window                  |
+| Volume_(BTC)      | 3613769 non-null: float64        | Volume of BTC transacted in this window                    |
+| Volume_(Currency) | 3613769 non-null: float64        | Volume of corresponding currency transacted in this window |
+| Weighted_Price    | 3613769 non-null: float64        | VWAP - Volume Weighted Average Price 
 
 <a name='acquire_takeaways'></a>
 ### Takeaways from Acquire:
 
-> - Target variable: `logerror`
-> - This dataframe has 74,244 rows and 23 columns
-> - The dataset has 162,235 missing values
-> - There are 2 `object` based dtypes.
+> - Target variable: `Price`
+> - This dataframe currenly has 4,857,377 rows and 8 columns
+> - There are 1,243,608 missing values.
+> - All columns are float64 types of data.
 
 <div style="text-align: right"><a href='#toc'>Table of Contents</a></div>
 <hr style="border-top: 10px groove tan; margin-top: 1px; margin-bottom: 1px"></hr>
@@ -155,9 +111,8 @@
 <a name='prep_data'></a>
 ## Prepare Data
 ✓ _Plan_ ➜ ✓ _Acquire_ ➜ 🟢 **Prepare** ➜ ☐ _Explore_ ➜ ☐ _Model_ ➜ ☐ _Deliver_
-> - Utilized standard median fillna values method.
-> - Filtered for outliers above a `taxamount` of $5,000,000 and `bedroomcnt` & `bathroomcnt` greater than 1.
-> - Further scaled the data to min max values.
+> - Add additional columns of `month`, `day_of_week`, `minute_price_diff`, `intraday_high_low`, `percent_change` and `day_num`.
+> - Filling the null values with the most recent value will likely be the best course of action.
 
 <a name='prepare_takeaways'></a>
 ### Prepare Takeaways
