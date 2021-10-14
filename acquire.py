@@ -1,6 +1,5 @@
 import pandas as pd
 
-
 def fetch_data_dict(df):
     ''' Fetches and formats a data_dict to put into project README.md
     returns two data dict.
@@ -16,10 +15,13 @@ def fetch_data_dict(df):
         'Weighted_Price' :'VWAP - Volume Weighted Average Price',
         'day_of_week' : 'Verbose name of the week',
         'month' : 'Month number and month name',
-        'minute_price_diff' : 'Delta between the Close and Open',
-        'price_delta' : 'Delta between the High and Low',
+        'price_diff' : 'Delta between the Close and Open (Close - Open)',
+        'price_delta' : 'Delta between the High and Low (High - Low)',
         'day_num' : 'The numeric number of the day of the month',
-        'percent_change': 'Price difference / Open price represented as a percentage'
+        'percent_change': 'Price difference / Open price represented as a percentage (price_diff / Open)',
+        'avg_price': 'Avg price for the time period ([Open + Close] / 2)',
+        'day_of_week_num': 'number representing the day of the week',
+        'month_num': 'number representing the month of the year'
     }
 
     data_dict = pd.DataFrame([{'Feature': col, 

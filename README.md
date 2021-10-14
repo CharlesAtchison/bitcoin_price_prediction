@@ -58,12 +58,12 @@
 ## Executive Summary
 
 ### Goals
-> - Utilize at least 3 clustering associations and 4 models to discover potential drivers of the `logerror` of the Zillow Zestimate for single-unit properties sold during 2017. 
+> - 
 > - Abstract the functions to sub python scripts to have a clean presentation.
-> - Ensure the project is easily reproducable 
+> - 
 
 ### Findings
-> - All (4) hypotheses rejected the Null Hypotheses
+> - 
 
 
 
@@ -101,7 +101,7 @@
 <a name='acquire_takeaways'></a>
 ### Takeaways from Acquire:
 
-> - Target variable: `Close`
+> - Target variable: `avg_price`
 > - This dataframe currenly has 4,857,377 rows and 8 columns
 > - There are 1,243,608 missing values.
 > - All columns are float64 types of data.
