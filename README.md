@@ -101,7 +101,7 @@
 <a name='acquire_takeaways'></a>
 ### Takeaways from Acquire:
 
-> - Target variable: `Price`
+> - Target variable: `Close`
 > - This dataframe currenly has 4,857,377 rows and 8 columns
 > - There are 1,243,608 missing values.
 > - All columns are float64 types of data.
@@ -115,10 +115,27 @@
 > - Add additional columns of `month`, `day_of_week`, `minute_price_diff`, `intraday_high_low`, `percent_change` and `day_num`.
 > - Filling the null values with the most recent value will likely be the best course of action.
 
+### New Data Dictionary
+
+| Feature           | Datatype                  | Definition                                                 |
+|:------------------|:--------------------------|:-----------------------------------------------------------|
+| Open              | 4857377 non-null: float64 | Open price at start time window                            |
+| High              | 4857377 non-null: float64 | High price within the time window                          |
+| Low               | 4857377 non-null: float64 | Low price within the time window                           |
+| Close             | 4857377 non-null: float64 | Close price at the end of the time window                  |
+| Volume_(BTC)      | 4857377 non-null: float64 | Volume of BTC transacted in this window                    |
+| Volume_(Currency) | 4857377 non-null: float64 | Volume of corresponding currency transacted in this window |
+| Weighted_Price    | 4857377 non-null: float64 | VWAP - Volume Weighted Average Price                       |
+| day_of_week       | 4857377 non-null: object  | Verbose name of the week                                   |
+| month             | 4857377 non-null: object  | Month number and month name                                |
+| minute_price_diff | 4857377 non-null: float64 | Delta between the Close and Open                           |
+| price_delta       | 4857377 non-null: float64 | Delta between the High and Low                             |
+| day_num           | 4857377 non-null: int64   | The numeric number of the day of the month                 |
+| percent_change    | 4857377 non-null: float64 | Price difference / Open price represented as a percentage  |
+
 <a name='prepare_takeaways'></a>
 ### Prepare Takeaways
-> - The data is now prepared to be input into the explore aspects of the data pipeline to evaluate what features we should use to potentially cluster.
-> - We dropped all other columns that had a high quantity of null values.
+> - The data is now prepared to be input into the explore aspects of the data pipeline to evaluate what features we should use to potentially run time-series analysis on.
                      
 <div style="text-align: right"><a href='#toc'>Table of Contents</a></div>
 <hr style="border-top: 10px groove tan; margin-top: 1px; margin-bottom: 1px"></hr>
@@ -159,6 +176,7 @@
 
 <a name='pairplot'></a>
 ### Pair Plot
+
 ![pairplot](images/pairplot.png)
 
 <a name='explore_takeaways'></a>
