@@ -2,6 +2,10 @@
 
 ![bitcoin_picture](images/bitcoin.jpeg)
 
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/badge/release-draft-yellow)
+![GitHub last commit](https://img.shields.io/badge/last%20commit-Oct%202021-green)
+
+
 <a name ='toc'></a>
 # Table of Contents 
 1. [Project Planning](#project_planning)
