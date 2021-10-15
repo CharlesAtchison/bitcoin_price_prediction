@@ -10,16 +10,19 @@
 2. [Executive Summary](#exe_sum)
 3. [Acquire Data](#acquire)
     1. [Data Dictonary](#data_dict)
-    2. [Data Description](#data_desc)
-    3. [Acquire Takeaways](#acquire_takeaways)
+    2. [Acquire Takeaways](#acquire_takeaways)
 4. [Prepare Data](#prep_data)
-    1. [Distributions](#distributions)
-    2. [Prepare Takeaways](#prepare_takeaways)
+    1. [Prepare Takeaways](#prepare_takeaways)
 5. [Data Exploration](#explore)
     1. [Correlations](#correlations)
     2. [Pairplot](#pairplot)
     3. [Explore Takeaways](#explore_takeaways)
-6. [Modeling & Evaluation](#modeling)
+6. [Modeling](#modeling)
+    1. [Last Observed Value](#last_observed_value)
+    2. [Rolling & Moving Average](#rolling_average)
+    3. [Holt's Linear Trend](#holt_trend)
+    4. [Previous Cycle](#previous_cycle)
+7. [Delivery](#delivery)
     1. [Conclusions & Next Steps](#conclusions)
 
 <hr style="border-top: 10px groove tan; margin-top: 5px; margin-bottom: 5px"></hr>
@@ -81,6 +84,7 @@
 | 2021-03-30 23:59:00 | 58742.2 | 58770.4 | 58742.2 | 58760.6 |       0.720415 |             42333   |          58761.9 |
 | 2021-03-31 00:00:00 | 58767.8 | 58778.2 | 58756   | 58778.2 |       2.71283  |            159418   |          58764.3 |
 
+<a name='data_dict'></a>
 ### Data Dictonary 
 
 | Feature           | Datatype                         | Definition                                                 |
@@ -157,7 +161,7 @@
 
 ![heatmap](images/avg_price_correlations.png)
 
-#### Correlations of Logerror
+#### Correlations of Average Price
 | Column Name       |    avg_price |
 |:------------------|-------------:|
 | price_diff        |   0.0061726  |
@@ -185,6 +189,7 @@
 ## Modeling 
 ✓ _Plan_ ➜ ✓ _Acquire_ ➜ ✓ _Prepare_ ➜  ✓ _Explore_ ➜  🟢 **Model** ➜ ☐ _Deliver_
 
+<a name='last_observed_value'></a>
 ### Last Observed Value
 
 #### Average Price
@@ -193,6 +198,7 @@
 #### Percent Change
 ![last_observed_value](images/last_observed_val_percent_change.png)
 
+<a name='rolling_average'></a>
 
 ### Rolling/Moving Average
 
@@ -202,8 +208,8 @@
 #### Percent Change
 ![rolling_value](images/rolling_val_pct.png)
 
-
-### Holt's Linear Trendhol
+<a name='holt_trend'></a>
+### Holt's Linear Trend
 
 #### Average Price
 ![holt_value](images/holt_val.png)
@@ -211,6 +217,7 @@
 #### Percent Change
 ![holt_value_pct](images/holt_val_pct.png)
 
+<a name='previous_cycle'></a>
 ### Previous Cycle (6 months)
 
 #### Average Price
@@ -225,10 +232,10 @@
 
 
 <a name='conclusions'></a>
-## Conclusions & Next Steps
+### Conclusions & Next Steps
 
-> - I found that most of the models weren't to different in their accuracy, even with hyperparameter optimization and feature engineering.
-> - If I had more time to work on this project, I'd continue doing more feature engineering and hyperparameter optmization. 
+> - I found that there were large variations in certain models RMSE but the models that could be tuned (such as Holt's and Previous Cycles) performed best after optimization.
+> - If I had more time to work on this project, I'd continue doing more performance tuning and possibly aggregating other external data factors that could provide a higher level of correlation or model accuracy. 
 
 <div style="text-align: right"><a href='#toc'>Table of Contents</a></div>
 <hr style="border-top: 10px groove tan; margin-top: 1px; margin-bottom: 1px"></hr>
