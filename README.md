@@ -1,5 +1,7 @@
 <center><h1>Bitcoin Price Prediction Time-Series Project</h1></center>
 
+![bitcoin_picture](images/bitcoin.jpeg)
+
 <a name ='toc'></a>
 # Table of Contents 
 1. [Project Planning](#project_planning)
@@ -45,7 +47,7 @@
 
 <a name='audience'></a>
 ### Audience 
-> - Your audience for this project is a data science team. 
+> - Data science professionals as well as any curious cat. 
 
 <a name='deliverables'></a>
 ### Deliverables
