@@ -19,10 +19,8 @@
     1. [Correlations](#correlations)
     2. [Pairplot](#pairplot)
     3. [Explore Takeaways](#explore_takeaways)
-6. [Hypothesis](#hypothesis)
-    1. [Conclusion](#hyp_conclusion)
-7. [Modeling & Evaluation](#modeling)
-    7. [Conclusions & Next Steps](#conclusions)
+6. [Modeling & Evaluation](#modeling)
+    1. [Conclusions & Next Steps](#conclusions)
 
 <hr style="border-top: 10px groove tan; margin-top: 5px; margin-bottom: 5px"></hr>
 
@@ -39,7 +37,7 @@
 <a name='business_goals'></a>
 ### Business Goals 
 > - Create models that are better at predicting Bitcoin price than the baseline.
-> - Put these models into a Juypter notebook and make the project recreatable.
+> - Put these models into a Juypter notebook and make the project replicable.
 
 <a name='audience'></a>
 ### Audience 
@@ -58,12 +56,13 @@
 ## Executive Summary
 
 ### Goals
-> - 
-> - Abstract the functions to sub python scripts to have a clean presentation.
-> - 
+> - This project is to utilize machine learning modeling to predict the avgerage price of Bitcoin, better than the baseline.
+> - Abstract the functions to sub python scripts to have a clean presentation, and throughly document.
 
 ### Findings
-> - 
+> - The dataset had quite a few null values, but utilizing a forward fill method offered an easy and effective remedy. Otherwise, this dataset was quite clean.
+> - Another key aspect of predicting Bitcoin's price was the percent change within a time interval.
+> - The best performing model was Holt's Linear Trend that was fine tuned for the dataset via slope and level smoothness, with an RMSE of 53.
 
 <div style="text-align: right"><a href='#toc'>Table of Contents</a></div>
 <hr style="border-top: 10px groove tan; margin-top: 1px; margin-bottom: 1px"></hr>
@@ -73,7 +72,6 @@
 ✓ _Plan_ ➜ 🟢 **Acquire** ➜ ☐ _Prepare_ ➜ ☐ _Explore_ ➜ ☐ _Model_ ➜ ☐ _Deliver_ 
 
 ### Data Tail 
-(as the head has too many nulls currently)
 
 | Timestamp           |    Open |    High |     Low |   Close |   Volume_(BTC) |   Volume_(Currency) |   Weighted_Price |
 |:--------------------|--------:|--------:|--------:|--------:|---------------:|--------------------:|-----------------:|
@@ -110,26 +108,29 @@
 <a name='prep_data'></a>
 ## Prepare Data
 ✓ _Plan_ ➜ ✓ _Acquire_ ➜ 🟢 **Prepare** ➜ ☐ _Explore_ ➜ ☐ _Model_ ➜ ☐ _Deliver_
-> - Add additional columns of `month`, `day_of_week`, `minute_price_diff`, `intraday_high_low`, `percent_change` and `day_num`.
+> - Add additional columns of `month`, `day_of_week`, `price_diff`, `price_delta`, `percent_change` and `day_num`.
 > - Filling the null values with the most recent value will likely be the best course of action.
 
 ### New Data Dictionary
 
-| Feature           | Datatype                  | Definition                                                 |
-|:------------------|:--------------------------|:-----------------------------------------------------------|
-| Open              | 4857377 non-null: float64 | Open price at start time window                            |
-| High              | 4857377 non-null: float64 | High price within the time window                          |
-| Low               | 4857377 non-null: float64 | Low price within the time window                           |
-| Close             | 4857377 non-null: float64 | Close price at the end of the time window                  |
-| Volume_(BTC)      | 4857377 non-null: float64 | Volume of BTC transacted in this window                    |
-| Volume_(Currency) | 4857377 non-null: float64 | Volume of corresponding currency transacted in this window |
-| Weighted_Price    | 4857377 non-null: float64 | VWAP - Volume Weighted Average Price                       |
-| day_of_week       | 4857377 non-null: object  | Verbose name of the week                                   |
-| month             | 4857377 non-null: object  | Month number and month name                                |
-| minute_price_diff | 4857377 non-null: float64 | Delta between the Close and Open                           |
-| price_delta       | 4857377 non-null: float64 | Delta between the High and Low                             |
-| day_num           | 4857377 non-null: int64   | The numeric number of the day of the month                 |
-| percent_change    | 4857377 non-null: float64 | Price difference / Open price represented as a percentage  |
+| Feature           | Datatype                  | Definition                                                                    |
+|:------------------|:--------------------------|:------------------------------------------------------------------------------|
+| Open              | 4857377 non-null: float64 | Open price at start time window                                               |
+| High              | 4857377 non-null: float64 | High price within the time window                                             |
+| Low               | 4857377 non-null: float64 | Low price within the time window                                              |
+| Close             | 4857377 non-null: float64 | Close price at the end of the time window                                     |
+| Volume_(BTC)      | 4857377 non-null: float64 | Volume of BTC transacted in this window                                       |
+| Volume_(Currency) | 4857377 non-null: float64 | Volume of corresponding currency transacted in this window                    |
+| Weighted_Price    | 4857377 non-null: float64 | VWAP - Volume Weighted Average Price                                          |
+| day_of_week       | 4857377 non-null: object  | Verbose name of the week                                                      |
+| day_of_week_num   | 4857377 non-null: int64   | number representing the day of the week                                       |
+| month             | 4857377 non-null: object  | Month number and month name                                                   |
+| month_num         | 4857377 non-null: int64   | number representing the month of the year                                     |
+| price_diff        | 4857377 non-null: float64 | Delta between the Close and Open (Close - Open)                               |
+| price_delta       | 4857377 non-null: float64 | Delta between the High and Low (High - Low)                                   |
+| day_num           | 4857377 non-null: int64   | The numeric number of the day of the month                                    |
+| avg_price         | 4857377 non-null: float64 | Avg price for the time period ([Open + Close] / 2)                            |
+| percent_change    | 4857377 non-null: float64 | Price difference / Open price represented as a percentage (price_diff / Open) |
 
 <a name='prepare_takeaways'></a>
 ### Prepare Takeaways
