@@ -23,7 +23,8 @@
     3. [Holt's Linear Trend](#holt_trend)
     4. [Previous Cycle](#previous_cycle)
 7. [Delivery](#delivery)
-    1. [Conclusions & Next Steps](#conclusions)
+    1. [Root Mean Square Deviation](#rmse)
+    2. [Conclusions & Next Steps](#conclusions)
 
 <hr style="border-top: 10px groove tan; margin-top: 5px; margin-bottom: 5px"></hr>
 
@@ -226,10 +227,21 @@
 #### Percent Change
 ![previous_cycle_pct](images/previous_cycle_6_mo_pct.png)
 
+<div style="text-align: right"><a href='#toc'>Table of Contents</a></div>
+<hr style="border-top: 10px groove tan; margin-top: 1px; margin-bottom: 1px"></hr>
+
 <a name='delivery'></a>
 ## Project Delivery
 ✓ _Plan_ ➜ ✓ _Acquire_ ➜ ✓ _Prepare_ ➜ ✓ _Explore_ ➜ ✓ _Model_ ➜ 🟢 **Deliver**
 
+<a name='rmse'></a>
+### Root Mean Square Deviation Results
+
+#### Average Price
+![rmse_results](images/rmse_val.png)
+
+#### Percent Change
+![rmse_pct_results](images/rmse_val_pct.png)
 
 <a name='conclusions'></a>
 ### Conclusions & Next Steps
