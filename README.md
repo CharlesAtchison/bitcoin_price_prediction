@@ -65,8 +65,6 @@
 ### Findings
 > - 
 
-
-
 <div style="text-align: right"><a href='#toc'>Table of Contents</a></div>
 <hr style="border-top: 10px groove tan; margin-top: 1px; margin-bottom: 1px"></hr>
 
@@ -145,34 +143,29 @@
 ## Explore Data
 ✓ _Plan_ ➜ ✓ _Acquire_ ➜ ✓ _Prepare_ ➜ 🟢 **Explore** ➜ ☐ _Model_ ➜ ☐ _Deliver_
 
+### Bitcoin Price over Time
+
+![Bitcoin_price](images/bitcoin_price_over_time.png)
+
+### Hour vs Percent Change on a monthly basis
+
+![hour_vs_percent_change_monthly](images/hour_vs_percent_change_by_month.png)
+
 <a name='correlations'></a>
 ### Correlations
 
-![heatmap](images/logerror_corr.png)
+![heatmap](images/avg_price_correlations.png)
 
 #### Correlations of Logerror
-|  Column Name |     logerror |
-|:-----------------------------|-------------:|
-| bathroomcnt                  |  0.00474117  |
-| id                           |  0.00447373  |
-| regionidcounty               |  0.00292009  |
-| rawcensustractandblock       |  0.00269419  |
-| fips                         |  0.00269152  |
-| roomcnt                      |  0.00199583  |
-| latitude                     |  0.00182852  |
-| bedroomcnt                   |  0.00125381  |
-| calculatedfinishedsquarefeet | -0.000362524 |
-| regionidzip                  | -0.000494803 |
-| propertylandusetypeid        | -0.00150166  |
-| lotsizesquarefeet            | -0.00249514  |
-| assessmentyear               | -0.00295415  |
-| longitude                    | -0.00302902  |
-| landtaxvaluedollarcnt        | -0.00305275  |
-| regionidcity                 | -0.00402482  |
-| taxamount                    | -0.0042753   |
-| taxvaluedollarcnt            | -0.00445937  |
-| structuretaxvaluedollarcnt   | -0.00542311  |
-| yearbuilt                    | -0.00712105  |
+| Column Name       |    avg_price |
+|:------------------|-------------:|
+| price_diff        |   0.0061726  |
+| percent_change    |   0.00543991 |
+| Volume_(Currency) |  -0.0475418  |
+| Volume_(BTC)      |  -0.067203   |
+| price_delta       |  -0.142155   |
+| day_num           |  -0.346819   |
+| month_num         | nan          |
 
 <a name='pairplot'></a>
 ### Pair Plot
@@ -181,90 +174,16 @@
 
 <a name='explore_takeaways'></a>
 ### Explore Takeaways
-> - It is apparent that the most correlated features with the `logerror` are `yearbuilt`, `structuretaxvaluedollarcnt`, `bathroomcnt`. 
-> - The best features from the feature engineering aspect were `bathroomcnt`, `yearbuilt` & `assessmentyear`.
+> - It is apparent that the most correlated features with `avg_price` are `day_num`, `price_delta`, `Volume_(BTC)`. 
+> - It also appears that the avg_price tends to trend upward during Oct, and downwards in Sept.
 
 <div style="text-align: right"><a href='#toc'>Table of Contents</a></div>
 <hr style="border-top: 10px groove tan; margin-top: 1px; margin-bottom: 1px"></hr>
 
-<a name='hypothesis'></a>
-### Hypothesis 1 Correlation Test `logerror` vs `id`
-> - ${H}_{0}$: There is no correlation between `logerror` and `id`
-> - ${H}_{a}$: There is a correlation between `logerror` and `id`
-
-__r-value__: 0.00177
-
-__p-value__: 0.76129
-
-We fail to reject null hypothesis. There is no relationship between `logerror` and `id`
-
-### Hypothesis 2 Correlation Test `logerror` vs `bathroomcnt`
-> - ${H}_{0}$: There is no correlation between `logerror` and `bathroomcnt`
-> - ${H}_{a}$: There is a correlation between `logerror` and `bathroomcnt`
-
-__r-value__: 0.00354
-
-__p-value__: 0.54214
-
-We fail to reject null hypothesis. There is no relationship between `logerror` and `bathroomcnt`
-
-### Hypothesis 3 Correlation Test `logerror` vs `bedroomcnt`
-> - ${H}_{0}$: There is no correlation between `logerror` and `bedroomcnt`
-> - ${H}_{a}$: There is a correlation between `logerror` and `bedroomcnt`
-
-__r-value__: 0.00261
-
-__p-value__: 0.65306
-
-We fail to reject null hypothesis. There is no relationship between `logerror` and `bedroomcnt`
-
-### Hypothesis 4 Correlation Test `logerror` vs `calculatedfinishedsquarefeet`
-> - ${H}_{0}$: There is no correlation between `logerror` and `calculatedfinishedsquarefeet`
-> - ${H}_{a}$: There is a correlation between `logerror` and `calculatedfinishedsquarefeet`
-
-__r-value__: 0.00126
-
-__p-value__: 0.82831
-
-We fail to reject null hypothesis. There is no relationship between `logerror` and `calculatedfinishedsquarefeet`
-
-
 <a name='modeling'></a>
-## Modeling & Evaluation
-✓ _Plan_ ➜ ✓ _Acquire_ ➜ ✓ _Prepare_ ➜ ✓ _Explore_ ➜ 🟢 **Model** ➜ ☐ _Deliver_
+## Modeling 
+✓ _Plan_ ➜ ✓ _Acquire_ ➜ ✓ _Prepare_ ➜  ✓ _Explore_ ➜  🟢_Model_ ➜ ☐ _Deliver_
 
-<a name='cluster_1'></a>
-### Cluster 1
-
-![cluster_1_k](images/cluster_1_k.png)
-
-
-![cluster_1](images/cluster_1.png)
-
-
-![cluster_1_centroid](images/cluster_1_cent.png)
-
-<a name='cluster_2'></a>
-### Cluster 2
-
-![cluster_1_k](images/cluster_2_k.png)
-
-
-![cluster_1](images/cluster_2.png)
-
-
-![cluster_1_centroid](images/cluster_2_cent.png)
-
-<a name='cluster_3'></a>
-### Cluster 3
-
-![cluster_1_k](images/cluster_3_k.png)
-
-
-![cluster_1](images/cluster_3.png)
-
-
-![cluster_1_centroid](images/cluster_3_cent.png)
 
 <a name='delivery'></a>
 ## Project Delivery
