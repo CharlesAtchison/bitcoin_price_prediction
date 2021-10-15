@@ -31,6 +31,7 @@
 7. [Delivery](#delivery)
     1. [Root Mean Square Deviation](#rmse)
     2. [Conclusions & Next Steps](#conclusions)
+    3. [Replication](#replication)
 
 <hr style="border-top: 10px groove tan; margin-top: 5px; margin-bottom: 5px"></hr>
 
@@ -254,6 +255,11 @@
 
 > - I found that there were large variations in certain models RMSE but the models that could be tuned (such as Holt's and Previous Cycles) performed best after optimization.
 > - If I had more time to work on this project, I'd continue doing more performance tuning and possibly aggregating other external data factors that could provide a higher level of correlation or model accuracy. 
+
+<a name='replication'></a>
+### Replication
+> - Download the the csv data from Kaggle <a href='https://www.kaggle.com/mczielinski/bitcoin-historical-data' title='Bitstamp USD csv file download'>here</a>.
+> - Download the `acquire.py` & `prepare.py` files and then run the final notebook.
 
 <div style="text-align: right"><a href='#toc'>Table of Contents</a></div>
 <hr style="border-top: 10px groove tan; margin-top: 1px; margin-bottom: 1px"></hr>
