@@ -183,8 +183,41 @@
 
 <a name='modeling'></a>
 ## Modeling 
-✓ _Plan_ ➜ ✓ _Acquire_ ➜ ✓ _Prepare_ ➜  ✓ _Explore_ ➜  🟢_Model_ ➜ ☐ _Deliver_
+✓ _Plan_ ➜ ✓ _Acquire_ ➜ ✓ _Prepare_ ➜  ✓ _Explore_ ➜  🟢 **Model** ➜ ☐ _Deliver_
 
+### Last Observed Value
+
+#### Average Price
+![last_observed_value](images/last_observed_val.png)
+
+#### Percent Change
+![last_observed_value](images/last_observed_val_percent_change.png)
+
+
+### Rolling/Moving Average
+
+#### Average Price
+![rolling_value](images/rolling_val.png)
+
+#### Percent Change
+![rolling_value](images/rolling_val_pct.png)
+
+
+### Holt's Linear Trendhol
+
+#### Average Price
+![holt_value](images/holt_val.png)
+
+#### Percent Change
+![holt_value_pct](images/holt_val_pct.png)
+
+### Previous Cycle (6 months)
+
+#### Average Price
+![previous_cycle](images/previous_cycle_6_mo.png)
+
+#### Percent Change
+![previous_cycle_pct](images/previous_cycle_6_mo_pct.png)
 
 <a name='delivery'></a>
 ## Project Delivery
